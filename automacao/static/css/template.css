@@ -1,0 +1,34 @@
+@import url('https://fonts.googleapis.com/css?family=Hind:300,400');
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #FFF;
+    background: #444;
+    overflow: hidden;
+}
+
+.container {
+    background: #F3F3F3;
+    box-sizing: border-box;
+    overflow: auto;
+    height: 100vh;
+    width: 500px;
+    padding: 5px;
+    margin: auto;
+}
+
+.row {
+    justify-content: space-between;
+    box-sizing: border-box;
+    align-items: center;
+    margin: 5px auto;
+    display: flex;
+    width: 100%;
+    padding: 0 70px;
+}
+
+@media (max-width: 450px) {
+    .container {
+        width: 100%;
+    }
+}

@@ -1,0 +1,88 @@
+.tab {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.tab-content {
+    -webkit-transition: all .3s ease-in;
+    -moz-transition: all .3s ease-in;
+    -o-transition: all .3s ease-in;
+    transition: all .3s ease-in;
+
+    font-family: 'Hind', sans-serif;
+    background-color: #FFF;
+    pointer-events: none;
+    overflow: hidden;
+    max-height: 0;
+    width: 100%;
+}
+
+.tab input:checked~.tab-content {
+    -webkit-transition: all .3s ease-in;
+    -moz-transition: all .3s ease-in;
+    -o-transition: all .3s ease-in;
+    transition: all .3s ease-in;
+
+    border-bottom: 1px solid #e5e5e5;
+    pointer-events: all;
+    margin-bottom: 1px;
+    max-height: unset;
+}
+
+.tab input:checked~.tab-header {
+    border-bottom: 1.3px solid #03b5d2;
+    color: #03b5d2
+}
+
+.tab input:checked~.tab-header::after {
+    -webkit-transform:rotate(90deg);
+    -ms-transform:rotate(90deg);
+    transform: rotate(90deg);
+}
+
+.tab-header {
+    border-bottom: 1px solid #e5e5e5;
+    font-family: 'Hind', sans-serif;
+    background-color: #FFF;
+    align-items: center;
+    color: #545050b0;
+    font-size: 1.15rem;
+    text-align: left;
+    transition: 0.4s;
+    font-weight: 400;
+    cursor: pointer;
+    display: flex;
+    outline: none;
+    padding: 15px;
+    height: 15px;
+    margin: 0;
+}
+
+.tab-header label, img {
+    vertical-align: middle;
+}
+
+.tab-header label {
+    cursor: pointer;
+    padding: 12px;
+    width: 100%;
+}
+
+.tab-header label:hover {
+    color: #03b5d2;
+}
+
+.tab-header::after {
+    -webkit-transition: -webkit-transform .3s ease-in-out;
+    -ms-transition: -ms-transform .3s ease-in-out;
+    transition: transform .3s ease-in-out;
+
+    font-family: 'Ionicons';
+    content: "\203A";
+}
+
+.tab .content {
+    box-sizing: border-box;
+    padding: 5px;
+    width: 100%;
+}

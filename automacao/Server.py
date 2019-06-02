@@ -1,8 +1,9 @@
-from flask import Flask, request, abort, jsonify, render_template, Response, json
+from flask import Flask, request, abort, jsonify, render_template, Response, json, redirect, url_for
 from flask_restful import Resource, Api
 from flask_cors import CORS
 import traceback
 
+from auth.Autenticar import Autenticar
 from devices.Serialize import Serialize
 #from devices.Gpio import Gpio
 
@@ -17,10 +18,38 @@ class Index(Resource):
             return Response(
                 render_template(
                     "index.html",
-                    mimetype='text/html',
-                    Grupos=Serialize.desserializar()
+                    mimetype='text/html'
                 )
             )
+        except Exception as e:
+            traceback.print_exc(e)
+            return f'Erro: {e}'
+
+
+class Painel(Resource):
+    def get(self):
+        try:
+            if 'user' in request.args and 'psw' in request.args:
+                usuario = request.args['user']
+                senha = request.args['psw']
+
+                print(f'LOGIN: {usuario} SENHA: {senha} IP: {request.environ["REMOTE_ADDR"]}')
+
+                auth = Autenticar(usuario, senha)
+
+                if auth.isValido():
+                    return Response(
+                        render_template(
+                            "painel.html",
+                            mimetype='text/html',
+                            Grupos=Serialize.desserializar()
+                        )
+                    )
+                else:
+                    return redirect(url_for('index', erro='Usuário ou senha inválidos!'))
+
+            return redirect(url_for('index'))
+
         except Exception as e:
             traceback.print_exc(e)
             return f'Erro: {e}'
@@ -79,7 +108,8 @@ class Comando(Resource):
             return f'Erro: {e}'
 
 
-api.add_resource(Index, '/')
+api.add_resource(Index, '/', '/index')
+api.add_resource(Painel, '/painel')
 api.add_resource(Status, '/status')
 api.add_resource(Comando, '/comando')
 

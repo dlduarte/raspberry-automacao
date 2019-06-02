@@ -1,71 +1,31 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt">
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, user-scalable=no">
-    <title>Painel</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
     <link rel="stylesheet" href="/static/css/template.css" />
-    <link rel="stylesheet" href="/static/css/accordion.css" />
-    <link rel="stylesheet" href="/static/css/toggle.css" />
-    <script src="/static/libs/jquery.min.js"></script>
-    <script src="/static/libs/jquery.mobile-1.5.0-rc1.js"></script>
+    <link rel="stylesheet" href="/static/css/login.css" />
 </head>
 
 <body>
-    <div class="container">
-        {%- for grupo in Grupos %}
-            <div class="tab">
-                <input type="checkbox" id="check-{{grupo.sigla}}" hidden>
-                <div class="tab-header">
-                    <img id="{{grupo.sigla}}" src="/static/img/luz-{{grupo.status}}.svg" alt="luz" width="18px">
-                    <label for="check-{{grupo.sigla}}">{{grupo.nome}}</label>
+    <div class="root">
+        <div class="centro">
+            <form action="painel" method="get" class="box">
+                <h1>Login</h1>
+                <input class="input" type="text" placeholder="Usuário" name="user" required>
+                <input class="input" type="password" placeholder="Senha" name="psw" required>
+                <input type="submit" class="btn" value="Entrar">
+            </form>
+            {% if request.args['erro'] %}
+                <div class="erro">
+                    <p>{{ request.args['erro'] }}</p>
                 </div>
-                <div class="tab-content">
-                    <div class="content">
-                         {%- for device in grupo.devices %}
-                            <div class="row">
-                                <label for="{{device.pino}}">{{device.nome}}</label>
-                                <input type="checkbox" id="{{device.pino}}" class="toggle-switch" onchange="send(this);" {% if device.saida %}checked{% endif %}>
-                            </div>
-                        {%- endfor %}
-                    </div>
-                </div>
-            </div>
-        {%- endfor %}
+            {% endif %}
+        </div>
     </div>
 </body>
-
-<footer>
-    <script>
-        function send(input){
-            device = input.id;
-            saida = input.checked;
-
-            json = '{"device": ' + device + ', "saida": ' + saida + '}';
-            console.log(json);
-
-            $.ajax({
-                url: 'http://127.0.0.1:5000/comando',
-                contentType: 'application/json',
-                cache: false,
-                method: 'POST',
-                dataType: 'json',
-                data: JSON.stringify(json),
-                success: function (request) {
-                    console.log(request);
-
-                    id = '#' + request['sigla'];
-                    img = request['status'];
-
-                    $(id).attr('src', '/static/img/luz-' + img + '.svg');
-                },
-                error: function(e) {
-                     console.log(e.responseText);
-                 }
-            });
-        }
-    </script>
-</footer>
 
 </html>

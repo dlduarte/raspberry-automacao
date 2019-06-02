@@ -58,7 +58,7 @@
     margin: 0;
 }
 
-.tab-header label, img {
+.tab-header label, .tab-header img {
     vertical-align: middle;
 }
 

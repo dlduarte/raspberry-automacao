@@ -4,7 +4,7 @@ from flask_cors import CORS
 import traceback
 
 from devices.Serialize import Serialize
-from devices.Gpio import Gpio
+#from devices.Gpio import Gpio
 
 app = Flask(__name__)
 api = Api(app)
@@ -50,7 +50,7 @@ class Comando(Resource):
             status = 'off'
 
             # Chamada classe manipuladora GPIO
-            Gpio(pino, saida)
+            #Gpio(pino, saida)
 
             grupos = Serialize.desserializar()
 

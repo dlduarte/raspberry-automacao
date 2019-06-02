@@ -26,18 +26,27 @@ body {
     font-family: 'Hind', sans-serif;
     background-color: #FFF;
     box-sizing: border-box;
-    display: block;
+    position: relative;
     margin: 10px 0;
+    display: flex;
     height: 55px;
     padding: 5px;
     width: 100%;
 }
 
-.legenda a, .legenda img {
+.legenda a#logo, .legenda a#logo img {
     display: flex;
     margin: auto;
     height: 40px;
     width: 145px;
+}
+
+.legenda a#sair, .legenda a#sair img {
+    position: absolute;
+    height: 25px;
+    width: 25px;
+    right: 5px;
+    top: 20%;
 }
 
 .legenda a:hover {

@@ -1,7 +1,8 @@
 import os
 import platform
 
-from setuptools.sandbox import _execfile
+from dao.Conexao import Conexao
+from dao.entidades.Usuarios import Usuarios
 
 dependencias_faltantes = []
 pip = 'pip'
@@ -40,5 +41,11 @@ for dep in dependencias_faltantes:
     except Exception or BaseException:
         pass
 
-os.system('python Server.py')
+try:
+    conexao = Conexao('automacao')
 
+    # Crio a tabela de usuários e adiciono o usuário admin á ela.
+    conexao.create_table(Usuarios())
+    conexao.inset(Usuarios(1, 'admin', '@Admin'))
+except Exception as e:
+    print(e)

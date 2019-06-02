@@ -1,21 +1,19 @@
-from auth.Usuario import Usuario
+from dao.entidades.Usuarios import Usuarios
+from dao.Conexao import Conexao
 
 
 class Autenticar:
 
     def __init__(self, login, senha):
-        self.login = login
-        self.senha = senha
+        self.login = '"' + login + '"'
+        self.senha = '"' + senha + '"'
 
     def isValido(self):
-        lista_usuarios = self._getAll()
+        conexao = Conexao('automacao')
+        usuarios = conexao.select(Usuarios(), [['login', self.login],['senha', self.senha]])
 
-        for usuario in lista_usuarios:
-            if usuario.login == self.login:
-                if usuario.senha == self.senha:
-                    return True
+        if len(usuarios) == 1:
+            print('AUTENTICAÇÃO ACEITA')
+            return True
+        print('AUTENTICAÇÃO RECUSADA')
         return False
-
-    def _getAll(self):
-
-        return [Usuario('dlduarte', '159753'), Usuario('dduarte', '123')]

@@ -15,8 +15,11 @@
 <body>
     <div class="container">
         <div class="legenda">
-            <a target="_blank" href="https://www.linkedin.com/in/david-lima-duarte-7591b2134">
+            <a id="logo" target="_blank" href="https://www.linkedin.com/in/david-lima-duarte-7591b2134">
                 <img src="/static/img/logo-on4.png" alt="on-software">
+            </a>
+            <a id="sair" href="#" onclick="window.location.reload(true);">
+                <img src="/static/img/sair.svg" alt="sair">
             </a>
         </div>
         {%- for grupo in Grupos %}

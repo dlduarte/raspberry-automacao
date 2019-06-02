@@ -29,13 +29,20 @@ class Index(Resource):
 class Painel(Resource):
     def get(self):
         try:
-            if 'user' in request.args and 'psw' in request.args:
-                usuario = request.args['user']
-                senha = request.args['psw']
+            return redirect(url_for('index'))
+        except Exception as e:
+            traceback.print_exc(e)
+            return f'Erro: {e}'
 
-                print(f'LOGIN: {usuario} SENHA: {senha} IP: {request.environ["REMOTE_ADDR"]}')
+    def post(self):
+        try:
+            if 'user' in request.form and 'psw' in request.form:
+                user = request.form['user']
+                psw = request.form['psw']
 
-                auth = Autenticar(usuario, senha)
+                print(f'LOGIN: {user} SENHA: {psw} IP: {request.environ["REMOTE_ADDR"]}')
+
+                auth = Autenticar(user, psw)
 
                 if auth.isValido():
                     return Response(

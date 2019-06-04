@@ -1,0 +1,18 @@
+PINO    GPIO    GRUPO      DEVICE
+----    ----    -----      ------
+ 37      26     GARAGEM    LUZ
+ 35      19	GARAGEM    PORTÃO V.
+ 33      13 	GARAGEM    PORTÃO M.
+ 31       6 	SALA	   LUZ
+ 29       5 	SALA	   TELEVISÃO
+ 23      11 	SALA	   COMPUTADOR
+ 21       9 	SALA	   VENTILADOR
+ 19      10 	COZINHA    LUZ
+ 15      22 	BANHEIRO   LUZ
+ 13      27 	QUARTO 1   LUZ
+ 11      17 	QUARTO 2   LUZ
+  7       4 	QUARTO 2   COMPUTADOR
+  5       3 	QUARTO 2   VENTILADOR
+  3       2 	QUARTO 3   LUZ
+ 21      21 	QUARTO 3   COMPUTADOR
+ 20      20     QUARTO 3   VENTILADOR

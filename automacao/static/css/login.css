@@ -17,14 +17,25 @@
     width: 300px;
 }
 
-h1 {
-    margin: 10px 0;
-    text-align: center;
+.titulo {
+    margin: 15px 0;
+    display: flex;
+}
+
+.titulo a {
     font-weight: bold;
     color: #525252;
-    font-size: 1.5em;
     font-size: 2em;
-    display: block;
+    display: flex;
+    text-decoration: none;
+    margin: auto;
+    line-height: 35px;
+}
+
+.titulo img {
+    width: 120px;
+    height: 35px;
+    margin-right: 5px;
 }
 
 .input {
